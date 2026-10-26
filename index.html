@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pozivnica ☕💛</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #fff0e6, #f5d9e8, #ffe8bd);
+  overflow: hidden;
+}
+
+.card {
+  width: 90%;
+  max-width: 420px;
+  padding: 35px 20px;
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border-radius: 28px;
+  box-shadow: 0 15px 40px #00000018;
+}
+
+.coffee { font-size: 65px; }
+
+h1 {
+  color: #684453;
+  line-height: 1.4;
+  font-size: 28px;
+}
+
+p {
+  color: #947583;
+  line-height: 1.6;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+button {
+  border: none;
+  border-radius: 14px;
+  padding: 14px 25px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#yes {
+  background: #d98daa;
+  color: white;
+}
+
+#no {
+  background: #eee4e8;
+  color: #684453;
+}
+
+#message {
+  display: none;
+  margin-top: 25px;
+  padding: 18px;
+  border-radius: 18px;
+  background: #fff0d3;
+  color: #684453;
+  font-size: 19px;
+  line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <div class="coffee">☕</div>
+  <h1>Da li želiš na kafu, Srđane? 💛</h1>
+  <p>Jedna kafa, malo razgovora<br>i lepo provedeno vreme. 🌷</p>
+
+  <div class="buttons" id="buttons">
+    <button id="yes" onclick="accept()">Da 💛</button>
+    <button id="no">Ne 🙈</button>
+  </div>
+
+  <div id="message"></div>
+</div>
+
+<script>
+const no = document.getElementById("no");
+
+function moveNo() {
+  const padding = 12;
+  const maxX = window.innerWidth - no.offsetWidth - padding;
+  const maxY = window.innerHeight - no.offsetHeight - padding;
+
+  no.style.position = "fixed";
+  no.style.left = Math.max(padding, Math.random() * maxX) + "px";
+  no.style.top = Math.max(padding, Math.random() * maxY) + "px";
+  no.style.zIndex = "9999";
+}
+
+no.addEventListener("mouseenter", moveNo);
+no.addEventListener("touchstart", function(event) {
+  event.preventDefault();
+  moveNo();
+}, { passive: false });
+
+no.addEventListener("click", moveNo);
+
+function accept() {
+  document.getElementById("buttons").style.display = "none";
+  no.style.display = "none";
+
+  const message = document.getElementById("message");
+  message.style.display = "block";
+  message.innerHTML =
+    "Dogovoreno! 💛☕<br><strong>Vidimo se na kafi!</strong><br>💛 🌷 💛";
+}
+</script>
+</div>
+</body>
+</html>
